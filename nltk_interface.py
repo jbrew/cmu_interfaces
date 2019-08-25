@@ -3,15 +3,18 @@ from direct_load import percent_coverage, load_google
 
 """
 Here's how to access the CMU via NLTK's built-in `corpus` package.
-
-
 """
 
 
-def print_longest(cmu, num_longest=10):
+def print_longest(cmu, n=10):
+	"""
+	Prints out the top n entries in the cmu, ranked by how
+	many alternative pronunciations they have.
+	"""
+
 	sorted_by_length = sorted(cmu.items(), key=lambda x: len(x[1]), reverse=True)
 
-	for k, v in sorted_by_length[:num_longest]:
+	for k, v in sorted_by_length[:n]:
 		print(k)
 		for pron in v:
 			print('\t' + " ".join(pron))
