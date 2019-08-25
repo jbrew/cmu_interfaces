@@ -96,13 +96,18 @@ def percent_coverage(cmu_dict, target_list):
 	"""
 	num_covered = 0
 	for word in target_list:
-		if word.upper() in cmu_dict:
+		if word.upper() in cmu_dict or word in cmu_dict:
 			num_covered += 1
 	return num_covered / len(target_list)
 
 
 
-def show_oddballs(cmu_dict, target_list):
+def find_oddballs(cmu_dict, target_list):
+	"""
+	Returns a list of words that are in the target list
+	but not in the dictionary. This is equivalent to taking
+	the complement of the set of words in the list.
+	"""
 
 	to_return = ''
 
@@ -113,18 +118,20 @@ def show_oddballs(cmu_dict, target_list):
 	return to_return
 
 
+def load_google():
+	with open('resources/count_1w.txt') as f:
+		return [line.split('\t')[0].strip() for line in f.readlines()]
 
 
 if __name__ == '__main__':
 
 	cmu = build_cmu_dict_from_text_file()
 
-	with open('resources/count_1w.txt') as f:
-		google_words = [line.split('\t')[0].strip() for line in f.readlines()]
+	print(len(cmu))
 
-	print(len(google_words))
+	google_words = load_google()
 
 	print(percent_coverage(cmu, google_words[:10000]))
-
-	print(show_oddballs(cmu, google_words[:2000]))
+	
+	#print(find_oddballs(cmu, google_words[:500]))
 
