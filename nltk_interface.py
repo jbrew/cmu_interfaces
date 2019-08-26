@@ -2,7 +2,7 @@ import nltk.corpus
 from direct_load import percent_coverage, load_google
 
 """
-Here's how to access the CMU via NLTK's built-in `corpus` package.
+Accessing the CMU via NLTK's built-in `corpus` package.
 """
 
 
@@ -25,8 +25,14 @@ if __name__ == '__main__':
 
 	cmu = nltk.corpus.cmudict.dict()
 
-	print(len(cmu))
-	google_words = load_google()
+	#print(len(cmu))
+	#google_words = load_google()
 
-	print(percent_coverage(cmu, google_words[:10000]))
+	#print(percent_coverage(cmu, google_words[:10000]))
+
+	print(cmu['our'])
+
+	import pronouncing
+
+	print(pronouncing.phones_for_word('dr'))
 

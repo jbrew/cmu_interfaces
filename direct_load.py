@@ -5,7 +5,7 @@ import string
 
 The CMUdict is distributed as a raw textfile.
 
-Each line has a word, then two spaces, then some space-separated phonemes.
+Each line has a word, then two spaces, then some space-seperated phonemes.
 
 Each phoneme is either:
 	- a consonant (e.g. K, D, SH)
@@ -42,7 +42,6 @@ def build_cmu_dict_from_text_file():
 
 	# ignore comments
 	lines = [line for line in lines if not line[:3] == ';;;']
-	print(len(lines))
 
 	cmu_dict = {}
 
